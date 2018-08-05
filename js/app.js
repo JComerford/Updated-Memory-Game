@@ -1,5 +1,5 @@
 /*
- * Create a list that holds all of your cards
+ * Create a list that holds all of your cards. Placed here, before we create the HTML for the cards, or later functions cannot use these variables.
  */
 let deckOfCards = ["fa fa-diamond", "fa fa-diamond",
     "fa fa-paper-plane-o", "fa fa-paper-plane-o",
@@ -9,8 +9,27 @@ let deckOfCards = ["fa fa-diamond", "fa fa-diamond",
     "fa fa-leaf", "fa fa-leaf",
     "fa fa-bicycle", "fa fa-bicycle",
     "fa fa-bomb", "fa fa-bomb"];
-
 let deck = document.querySelector('.deck');
+
+ //Define each card and create its HTML. This function must be placed here because of scoping.
+function generateCard(card) {
+    return `<li class="card"><i class="fa ${card}"></i></li>`;
+}
+//Creates the array, and repositions them within the array using the shuffle function.
+function initGame() {
+    let cardHTML = shuffle(deckOfCards).map(card => { //Call shuffle function here, to shuffle cards when initGame is called.
+        return generateCard(card);
+    });
+    deck.innerHTML = cardHTML.join(''); 
+}
+initGame();
+
+
+/****** 
+ * 
+ * Global Variables
+ * 
+******/
 let cards = document.querySelectorAll('.card');
 let card = document.querySelector('.card');
 let openCards = []; //openCards.length
@@ -18,6 +37,7 @@ let openCards = []; //openCards.length
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
  */
+
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -35,7 +55,7 @@ function shuffle(array) {
 }
 
 
-//loop through each card and create its HTML
+
 
 //set up the event listener for a card.
 cards.forEach(card => {
