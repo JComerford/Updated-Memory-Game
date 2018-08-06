@@ -34,7 +34,8 @@ let cards = document.querySelectorAll('.card');
 let card = document.querySelector('.card');
 let openCards = []; //openCards.length
 let moves = 0; //sets the move counter to 0 on start of game.
-
+let stars = document.querySelectorAll('.stars li'); //selects all with stars in class and li as an element
+let star = document.querySelector('fa fa-star');
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -96,9 +97,11 @@ function matchMaker() { //if the cards do match, lock the cards in the open posi
             openCards[1].classList.add('match');
             openCards = [];
             turn();
+            checkScore();
         } else {
             flipBack(); // if the cards do not match, remove the cards from the list and hide the card's symbol
             turn();
+            checkScore();
         }
     }
 } 
@@ -111,5 +114,23 @@ function turn() {
     movesText.innerHTML = moves;
 }
 
+//Changes score of how many stars depending on how many moves user made.
+function checkScore() {
+    if (moves === 13 || moves === 16 || moves === 20) {
+        removeStar();
+    }
+}
+
+//Counting Stars
+function removeStar() {
+    for (star of stars) {
+        if (star.style.display !== 'none') {
+            star.style.display = 'none';
+            break;
+        }
+    }
+}
+removeStar();
+removeStar();
 //    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  
