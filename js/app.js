@@ -31,7 +31,6 @@ function initGame() {
 }
 initGame(); //add each card's HTML to the page
 
-
 /****** 
  * 
  * Global Variables
@@ -40,9 +39,7 @@ initGame(); //add each card's HTML to the page
 let cards = document.querySelectorAll('.card');
 let card = document.querySelector('.card');
 let openCards = []; //openCards.length
-
 let stars = document.querySelectorAll('.stars li'); //selects all with stars in class and li as an element
-
 let clockOff = true;
 let time = 0;
 let clockId;
@@ -68,7 +65,6 @@ cards.forEach(card => {
             addToOpenCards(card); // add card to list of open cards
             flipCard(card); // show image on card  
             matchMaker(card); //check cards for match. If match, stay flipped. If not, flip over.
-
         }    
     }));
 });
@@ -77,7 +73,6 @@ cards.forEach(card => {
  function canCardBeClicked(card) {
      return (openCards.length < 2 && !card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match'));
  }
-
 
 //display the card's symbol
 function flipCard(card) {
@@ -98,14 +93,6 @@ function flipBack(card) {
 function addToOpenCards(card) {
     openCards.push(card);
 }
-
-/*deck.addEventListener('click', e => {
-    if (clockOff) {
-        startClock();
-        clockOff = false;
-        deck.removeEventListener('click', e);
-    } 
-});*/
 
 // if the list already has another card, check to see if the two cards match, if not call function flipBack within this function matchMaker.
 function matchMaker() { //if the cards do match, lock the cards in the open position
