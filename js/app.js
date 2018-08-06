@@ -33,6 +33,7 @@ initGame(); //add each card's HTML to the page
 let cards = document.querySelectorAll('.card');
 let card = document.querySelector('.card');
 let openCards = []; //openCards.length
+let moves = 0; //sets the move counter to 0 on start of game.
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -54,7 +55,8 @@ cards.forEach(card => {
         if (canCardBeClicked(card)) { //check conditional for click
             addToOpenCards(card); // add card to list of open cards
             flipCard(card); // show image on card  
-            matchMaker(card); //check cards for match. If match, stay flipped. If not, flip over.      
+            matchMaker(card); //check cards for match. If match, stay flipped. If not, flip over.
+
         }     
     }));
 });
@@ -93,14 +95,21 @@ function matchMaker() { //if the cards do match, lock the cards in the open posi
             openCards[0].classList.add('match');
             openCards[1].classList.add('match');
             openCards = [];
+            turn();
         } else {
             flipBack(); // if the cards do not match, remove the cards from the list and hide the card's symbol
+            turn();
         }
     }
 } 
 
+//   + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
+// Move counter 
+function turn() {
+    moves++;
+    const movesText = document.querySelector('.moves');
+    movesText.innerHTML = moves;
+}
 
-
- /*    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
+//    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
+ 
