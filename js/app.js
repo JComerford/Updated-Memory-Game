@@ -1,5 +1,9 @@
 /*
  * Create a list that holds all of your cards. Placed here, before we create the HTML for the cards, or later functions cannot use these variables.
+ * 
+ * Adapted from Mike Wales FEND webinar - https: //www.youtube.com/watch?v=_rUH-sEs68Y
+ *                            &
+ * Matthew Cranford 's Blog, "Journey to Greatness" - https://matthewcranford.com/memory-game-walkthrough-part-1-setup/
  */
 let deckOfCards = ["fa fa-diamond", "fa fa-diamond",
     "fa fa-paper-plane-o", "fa fa-paper-plane-o",
@@ -10,6 +14,8 @@ let deckOfCards = ["fa fa-diamond", "fa fa-diamond",
     "fa fa-bicycle", "fa fa-bicycle",
     "fa fa-bomb", "fa fa-bomb"];
 let deck = document.querySelector('.deck');
+let moves = 0; //sets the move counter to 0 on start of game.
+let star = document.querySelector('.stars');
 
  //Define each card and create its HTML. This function must be placed here because of scoping.
 function generateCard(card) {
@@ -20,7 +26,8 @@ function initGame() {
     let cardHTML = shuffle(deckOfCards).map(card => { //Call shuffle function here, to shuffle cards when initGame is called.
         return generateCard(card);
     });
-    deck.innerHTML = cardHTML.join(''); 
+    deck.innerHTML = cardHTML.join('');
+    checkScore(); 
 }
 initGame(); //add each card's HTML to the page
 
@@ -33,9 +40,13 @@ initGame(); //add each card's HTML to the page
 let cards = document.querySelectorAll('.card');
 let card = document.querySelector('.card');
 let openCards = []; //openCards.length
-let moves = 0; //sets the move counter to 0 on start of game.
+
 let stars = document.querySelectorAll('.stars li'); //selects all with stars in class and li as an element
-let star = document.querySelector('fa fa-star');
+
+let clockOff = true;
+let time = 0;
+let clockId;
+
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -58,7 +69,7 @@ cards.forEach(card => {
             flipCard(card); // show image on card  
             matchMaker(card); //check cards for match. If match, stay flipped. If not, flip over.
 
-        }     
+        }    
     }));
 });
 
@@ -88,6 +99,14 @@ function addToOpenCards(card) {
     openCards.push(card);
 }
 
+/*deck.addEventListener('click', e => {
+    if (clockOff) {
+        startClock();
+        clockOff = false;
+        deck.removeEventListener('click', e);
+    } 
+});*/
+
 // if the list already has another card, check to see if the two cards match, if not call function flipBack within this function matchMaker.
 function matchMaker() { //if the cards do match, lock the cards in the open position
     if (openCards.length === 2) {
@@ -112,6 +131,7 @@ function turn() {
     moves++;
     const movesText = document.querySelector('.moves');
     movesText.innerHTML = moves;
+
 }
 
 //Changes score of how many stars depending on how many moves user made.
@@ -134,3 +154,39 @@ removeStar();
 removeStar();
 //    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  
+
+//Following code deals with giving the clock functionality.
+//Timer begins when user clicks a card.
+function startClock() {
+        clockId = setInterval(() => {
+            time++;
+            displayTime();
+            console.log(time);
+        }, 1000);
+    }
+
+deck.addEventListener('click', (() => {
+    if (clockOff) {
+        startClock();
+        clockOff = false;
+    }
+}))
+
+//Stop clock when game ends.
+function stopClock() {
+    clearInterval(clockId);
+}
+
+//Displays time in browser. Gives both minutes and seconds.
+function displayTime() {
+    const clock = document.querySelector('.clock');
+    console.log(clock);
+    clock.innerHTML = time;
+    const seconds = time % 60;
+    const minutes = Math.floor(time / 60);
+    if (seconds < 10) {
+        clock.innerHTML = `Time ${minutes}:0${seconds}`;
+    } else {
+        clock.innerHTML = `Time ${minutes}:${seconds}`;
+    }
+}
