@@ -15,7 +15,7 @@ let deck = document.querySelector('.deck');
 function generateCard(card) {
     return `<li class="card"><i class="fa ${card}"></i></li>`;
 }
-//Creates the array, and repositions them within the array using the shuffle function.
+//Defines the array and repositions them within the array using the shuffle function.
 function initGame() {
     let cardHTML = shuffle(deckOfCards).map(card => { //Call shuffle function here, to shuffle cards when initGame is called.
         return generateCard(card);
