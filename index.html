@@ -16,20 +16,36 @@
         </header>
 
         <section class="score-panel">
+            <!-- Stars will give a user a rating depending on the number of moves made. -->
         	<ul class="stars">
-        		<li><i class="fa fa-star"></i></li>
-        		<li><i class="fa fa-star"></i></li>
-        		<li><i class="fa fa-star"></i></li>
+        		<li>
+                    <i class="fa fa-star"></i>
+                </li>
+        		<li>
+                    <i class="fa fa-star"></i>
+                </li>
+        		<li>
+                    <i class="fa fa-star"></i>
+                </li>
+                <li>
+                    <i class="fa fa-star"></i>
+                </li>
+                <li>
+                    <i class="fa fa-star"></i>
+                </li>
         	</ul>
-
-        	<span class="moves">3</span> Moves
-
+            <!-- As user clicks on cards, "moves" will keep track of each time a pair of cards are clicked. -->
+            <span class="moves">3</span> Moves
+            <!-- clock element -->
+            <span class="clock">0:00</span>
+            <!-- Clicking on the restart icon will restart the game. -->
             <div class="restart">
         		<i class="fa fa-repeat"></i>
         	</div>
         </section>
  
-        <ul class="deck">
+        <ul class="deck"> 
+            <!-- HTML below will be dynamically created in JavaScript-->
          <!--   <li class="card">
                 <i class="fa fa-diamond"></i>
             </li>
