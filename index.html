@@ -9,7 +9,23 @@
     <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
-  
+    <div class="modal-background hide">
+        <div class="modal-body">
+            <div class="modal-heading">
+                <h1 class="modal-title">Game Wrap-Up</h1>
+                <span class="modal-close">X</span>
+            </div>
+            <div class="modal-stats">
+                <span class="modal-time">Time =</span>
+                <span class="modal-stars">Stars =</span>
+                <span class="modal-moves">Moves =</span>
+            </div>
+            <div class="modal-buttons">
+                <button class="modal-button modal-cancel">Cancel</button>
+                <button class="modal-button modal-replay">Replay</button>
+            </div>
+        </div>
+    </div>
     <div class="container">
         <header>
             <h1>Memory Game</h1>
@@ -32,7 +48,7 @@
                 </li>
                 <li>
                     <i class="fa fa-star"></i>
-                </li>
+                </li> 
             </ul>
             <!-- Gives separation between Stars and Moves-->
             <span>||</span>

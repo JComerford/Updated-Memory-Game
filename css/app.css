@@ -21,6 +21,61 @@ body {
     font-family: 'Coda', cursive;
 }
 
+.modal-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.438);
+}
+
+.modal-body {
+    position: relative;
+    width: 400px;
+    /* height: 400px; Removed */
+    top: 50%;
+    left: 50%;
+    background: #ffffff;
+    transform: translate(-50%, -70%);
+    z-index: 1;
+}
+
+.hide {
+    display: none;
+}
+
+.modal-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.5rem;
+    border-bottom: 1px solid gray;
+}
+
+.modal-close {
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.modal-stats {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid gray;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-around;
+    padding: 1rem;
+}
+
+.modal-button {
+    width: 60px;
+    height: 30px;
+}
 .container {
     display: flex;
     justify-content: center;
