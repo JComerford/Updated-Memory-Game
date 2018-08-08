@@ -256,7 +256,7 @@ function resetStats() {
 }
 
 //Resets game & shuffles deck.
-function gameReset() {
+function gameReset() {  //issue has something to do with the resetStats function above...
     initGame();
     resetStats();           //Clock works, but cards are not clickable...
 
