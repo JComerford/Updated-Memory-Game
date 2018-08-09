@@ -28,7 +28,9 @@ function initGame() {
     });
     deck.innerHTML = cardHTML.join('');
     checkScore();
+
     let cards = document.querySelectorAll('.card');
+    let clockId;
     //set up the event listener for a card. Event listener created for each card.
     cards.forEach(card => {
         card.addEventListener('click', (e => { //if card is clicked:
@@ -70,7 +72,8 @@ function shuffle(array) {
     }
     return array;
 }
-
+/*
+Updated: This is no longer needed here as it is put with the page load/reset.
 //set up the event listener for a card. Event listener created for each card.
     cards.forEach(card => {
         card.addEventListener('click', (e => { //if card is clicked:
@@ -81,7 +84,7 @@ function shuffle(array) {
             }
         }));
     });
-
+*/
 
 //Set conditional for card to be clicked.
  function canCardBeClicked(card) {
@@ -259,6 +262,7 @@ function resetStats() {
     document.querySelector('.moves').innerHTML = moves;
 
     //stars = 0;
+    
     const stars = document.querySelectorAll('.stars li');
     for (star of stars) {
         star.style.display = 'inline';
