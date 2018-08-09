@@ -147,6 +147,7 @@ h1 {
     border-style: none;
     background: linear-gradient(#02ccba, #02b3e4, #aa7ecd);
     border-radius: 50px 50px 50px 50px / 25px 25px 25px 25px;
+    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
 }
 
 .score-panel .stars {
