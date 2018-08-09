@@ -150,6 +150,15 @@ function checkScore() {
     }
 }
 
+/*let starLine = document.getElementsByClassName('fa fa-star');
+//returns nodelist of all stars
+function removeStar() {
+    if (moves === 1) {
+        starLine[0].add('hide');
+    }
+}
+removeStar();*/
+
 //Counting Stars----------------------------TODO: If in so many moves, toggle class of star "hide".  Or, can I "pop" or "slice" from live nodelist?
 function removeStar() {
     const stars = document.querySelectorAll('.stars li');
