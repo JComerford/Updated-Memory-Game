@@ -202,7 +202,7 @@ function displayTime() {
     if (seconds < 10) {
         clock.innerHTML = `Time ${minutes}:0${seconds}`;
     } else {
-        clock.innerHTML = `time ${minutes}:${seconds}`;
+        clock.innerHTML = `Time ${minutes}:${seconds}`;
     }
 }
 
@@ -266,18 +266,16 @@ function resetStats() {
     matched = 0; //sets matched pairs count back to 0 from 8.
     moves = 0; //resets moves
     document.querySelector('.moves').innerHTML = moves;
+    //stars = 0;
 
-    stars = 0;
-    //the following code is for testing
-    /*
     let stars = document.querySelectorAll('.stars li');  
     for (star of stars) {
         star.style.display = 'inline';
-    }*/
+    }
 }
 
-//Resets game & shuffles deck.
-function gameReset() {  //issue has something to do with the resetStats function above...
+//Resets game, resets score panel, & shuffles deck.
+function gameReset() { 
     initGame();
     resetStats();           //Clock works, but cards are not clickable...
 
@@ -291,7 +289,7 @@ function replayButton() {
     gameReset();
     toggleModal();
     //resetCards();         //Clock works, but cards are not clickable...
-    resetStats();
+    //resetStats();
 
 }
 //Functionality for "Reset" Button:
