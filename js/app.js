@@ -1,10 +1,19 @@
-/*
- * Create a list that holds all of your cards. Placed here, before we create the HTML for the cards, or later functions cannot use these variables.
- * 
- * Adapted from Mike Wales FEND webinar - https: //www.youtube.com/watch?v=_rUH-sEs68Y
+
+ /* Adapted from Mike Wales FEND webinar - https: //www.youtube.com/watch?v=_rUH-sEs68Y
  *                            &
  * Matthew Cranford 's Blog, "Journey to Greatness" - https://matthewcranford.com/memory-game-walkthrough-part-1-setup/
  */
+
+ /*
+ * Create a list that holds all of your cards. Placed here, before we create the HTML for the cards, or later functions cannot use these variables.
+ */
+
+/******** 
+*
+* Global variables
+*
+********/
+
 let deckOfCards = ["fa fa-diamond", "fa fa-diamond",
     "fa fa-paper-plane-o", "fa fa-paper-plane-o",
     "fa fa-anchor", "fa fa-anchor",
@@ -17,7 +26,7 @@ let deck = document.querySelector('.deck');
 let moves = 0; //sets the move counter to 0 on start of game.
 let star = document.querySelector('.stars');
 
- //Define each card and create its HTML. This function must be placed here because of scoping.
+//Define each card and create its HTML. This function must be placed here because of scoping.
 function generateCard(card) {
     return `<li class="card"><i class="fa ${card}"></i></li>`;
 }
@@ -131,7 +140,7 @@ function matchMaker() { //if the cards do match, lock the cards in the open posi
     }
 } 
 
-//   + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
+// increment the move counter and display it on the page
 // Move counter 
 function turn() {
     moves++;
@@ -160,9 +169,6 @@ function removeStar() {
 removeStar();
 removeStar();
 
-//    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- 
-
 //Following code deals with giving the clock functionality.
 //Timer begins when user clicks a card.
 function startClock() {
@@ -173,6 +179,7 @@ function startClock() {
         }, 1000);
     }
 
+//This adds an event listener for the deck which starts the timer. This was done this way to eliminate the clock from incrementing by another second every time a card was clicked.
 deck.addEventListener('click', (() => {
     if (clockOff) {
         startClock();
@@ -182,7 +189,7 @@ deck.addEventListener('click', (() => {
 
 //Stop clock when game ends.
 function stopClock() {
-    clearInterval(clockId);
+    clearInterval(clockId); 
 }
 
 //Displays time in browser. Gives both minutes and seconds.
@@ -193,12 +200,13 @@ function displayTime() {
     const seconds = time % 60;
     const minutes = Math.floor(time / 60);
     if (seconds < 10) {
-        clock.innerHTML = `${minutes}:0${seconds}`;
+        clock.innerHTML = `Time ${minutes}:0${seconds}`;
     } else {
-        clock.innerHTML = `${minutes}:${seconds}`;
+        clock.innerHTML = `time ${minutes}:${seconds}`;
     }
 }
 
+// if all cards have matched, display a message with the final score
 //dealing with modal when user finishes game: pop-up.
 function toggleModal() {
     const modal = document.querySelector('.modal-background'); //sets variable to toggle.
@@ -207,15 +215,15 @@ function toggleModal() {
 toggleModal(); //Calls to open modal
 toggleModal(); //calls to hide modal
 
-//For testing Modal
+//For testing Modal: Keeps modal displayed so one can mess with asthetics.
 /*time = 121;
 displayTime(); //2:01
 moves = 16;
 checkScore(); //2 stars
-
 writeModalStats();
 toggleModal(); //open modal
 */
+
 function writeModalStats() {
     const timeStat = document.querySelector('.modal-time');
     const clockTime = document.querySelector('.clock').innerHTML;
@@ -259,12 +267,13 @@ function resetStats() {
     moves = 0; //resets moves
     document.querySelector('.moves').innerHTML = moves;
 
-    //stars = 0;
-    
-    const stars = document.querySelectorAll('.stars li');
+    stars = 0;
+    //the following code is for testing
+    /*
+    let stars = document.querySelectorAll('.stars li');  
     for (star of stars) {
         star.style.display = 'inline';
-    }
+    }*/
 }
 
 //Resets game & shuffles deck.
