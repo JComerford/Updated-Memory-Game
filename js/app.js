@@ -28,7 +28,17 @@ function initGame() {
     });
     deck.innerHTML = cardHTML.join('');
     checkScore();
-
+    let cards = document.querySelectorAll('.card');
+    //set up the event listener for a card. Event listener created for each card.
+    cards.forEach(card => {
+        card.addEventListener('click', (e => { //if card is clicked:
+            if (canCardBeClicked(card)) { //check conditional for click
+                addToOpenCards(card); // add card to list of open cards
+                flipCard(card); // show image on card  
+                matchMaker(card); //check cards for match. If match, stay flipped. If not, flip over.
+            }
+        }));
+    });
 }
 initGame(); //add each card's HTML to the page
 
