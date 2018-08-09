@@ -28,9 +28,7 @@ function initGame() {
     });
     deck.innerHTML = cardHTML.join('');
     checkScore();
-
     let cards = document.querySelectorAll('.card');
-    //let clockId;
     //set up the event listener for a card. Event listener created for each card.
     cards.forEach(card => {
         card.addEventListener('click', (e => { //if card is clicked:
