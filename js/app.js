@@ -30,7 +30,7 @@ function initGame() {
     checkScore();
 
     let cards = document.querySelectorAll('.card');
-    let clockId;
+    //let clockId;
     //set up the event listener for a card. Event listener created for each card.
     cards.forEach(card => {
         card.addEventListener('click', (e => { //if card is clicked:
@@ -195,9 +195,9 @@ function displayTime() {
     const seconds = time % 60;
     const minutes = Math.floor(time / 60);
     if (seconds < 10) {
-        clock.innerHTML = `Time ${minutes}:0${seconds}`;
+        clock.innerHTML = `${minutes}:0${seconds}`;
     } else {
-        clock.innerHTML = `Time ${minutes}:${seconds}`;
+        clock.innerHTML = `${minutes}:${seconds}`;
     }
 }
 
@@ -225,9 +225,9 @@ function writeModalStats() {
     const starsStat = document.querySelector('.modal-stars');
     const stars = getStars();
 
-    timeStat.innerHTML = `${clockTime}`;
-    movesStat.innerHTML = `Moves ${moves}`;
-    starsStat.innerHTML = `Stars ${stars}`;
+    timeStat.innerHTML = `Time = ${clockTime}`;
+    movesStat.innerHTML = `Moves = ${moves}`;
+    starsStat.innerHTML = `Stars = ${stars}`;
 }
 
 function getStars() {

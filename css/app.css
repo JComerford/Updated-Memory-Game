@@ -36,7 +36,7 @@ body {
     /* height: 400px; Removed */
     top: 50%;
     left: 50%;
-    background: #ffffff;
+    background: #8cc9d1;
     transform: translate(-50%, -70%);
     z-index: 1;
 }
@@ -47,10 +47,10 @@ body {
 
 .modal-heading {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: 0 1.5rem;
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid black;
 }
 
 .modal-close {
@@ -63,7 +63,7 @@ body {
     flex-direction: column;
     align-items: center;
     padding: 1rem;
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid black;
 }
 
 .modal-buttons {
