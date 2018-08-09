@@ -25,6 +25,15 @@ let deckOfCards = ["fa fa-diamond", "fa fa-diamond",
 let deck = document.querySelector('.deck');
 let moves = 0; //sets the move counter to 0 on start of game.
 let star = document.querySelector('.stars');
+let cards = document.querySelectorAll('.card');
+let card = document.querySelector('.card');
+let openCards = []; //openCards.length
+let stars = document.querySelectorAll('.stars li'); //selects all with stars in class and li as an element
+let clockOff = true;
+let time = 0;
+let clockId;
+let matched = 0;
+let allMatched = 8;
 
 //Define each card and create its HTML. This function must be placed here because of scoping.
 function generateCard(card) {
@@ -51,21 +60,6 @@ function initGame() {
 }
 initGame(); //add each card's HTML to the page
 
-/****** 
- * 
- * Global Variables
- * 
-******/
-let cards = document.querySelectorAll('.card');
-let card = document.querySelector('.card');
-let openCards = []; //openCards.length
-let stars = document.querySelectorAll('.stars li'); //selects all with stars in class and li as an element
-let clockOff = true;
-let time = 0;
-let clockId;
-let matched = 0;
-let allMatched = 8;
-
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -79,6 +73,7 @@ function shuffle(array) {
     }
     return array;
 }
+
 /*
 Updated: This is no longer needed here as it is put with the page load/reset.
 //set up the event listener for a card. Event listener created for each card.
@@ -146,7 +141,6 @@ function turn() {
     moves++;
     const movesText = document.querySelector('.moves');
     movesText.innerHTML = moves;
-
 }
 
 //Changes score of how many stars depending on how many moves user made.
@@ -156,7 +150,7 @@ function checkScore() {
     }
 }
 
-//Counting Stars
+//Counting Stars----------------------------TODO: If in so many moves, toggle class of star "hide".  Or, can I "pop" or "slice" from live nodelist?
 function removeStar() {
     const stars = document.querySelectorAll('.stars li');
     for (star of stars) {
@@ -277,7 +271,7 @@ function resetStats() {
 //Resets game, resets score panel, & shuffles deck.
 function gameReset() { 
     initGame();
-    resetStats();           //Clock works, but cards are not clickable...
+    resetStats();   
 
     //resetCards();
     //checkScore();
@@ -288,7 +282,7 @@ function gameReset() {
 function replayButton() {
     gameReset();
     toggleModal();
-    //resetCards();         //Clock works, but cards are not clickable...
+    //resetCards();  
     //resetStats();
 
 }
@@ -296,8 +290,8 @@ function replayButton() {
 document.querySelector('.restart').addEventListener('click', gameReset);
 
 //reset game after win
-function resetCards() {                                     //event listener is only on the deck, but not on individual cards after reset...
-    const cards = document.querySelectorAll('.deck li');   //TODO: Do I need this???? initGame resets all but eventlistener on cards.  Clock works though.
+function resetCards() {                                    
+    const cards = document.querySelectorAll('.deck li');   
     for (let card of cards) {
         card.className = 'card';
     }
