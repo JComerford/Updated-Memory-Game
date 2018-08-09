@@ -45,7 +45,8 @@ function initGame() {
         return generateCard(card);
     });
     deck.innerHTML = cardHTML.join('');
-    checkScore();
+    //checkScore();
+    removeStar();
     let cards = document.querySelectorAll('.card');
     //set up the event listener for a card. Event listener created for each card.
     cards.forEach(card => {
@@ -123,14 +124,16 @@ function matchMaker() { //if the cards do match, lock the cards in the open posi
             openCards = [];
             matched++;
             turn();
-            checkScore();
+            //checkScore();
+            removeStar();
             console.log(`Matched = ${matched}`); //for debugging
         } if (matched === allMatched) {
             gameOver();
         } else {
             flipBack(); // if the cards do not match, remove the cards from the list and hide the card's symbol
             turn();
-            checkScore();
+            //checkScore();
+            removeStar();
         }
     }
 } 
@@ -144,23 +147,23 @@ function turn() {
 }
 
 //Changes score of how many stars depending on how many moves user made.
-function checkScore() {
+/*function checkScore() {
     if (moves === 13 || moves === 16 || moves === 20) {
         removeStar();
     }
-}
+}*/
 
-/*let starLine = document.getElementsByClassName('fa fa-star');
+let starLine = document.getElementsByClassName('fa fa-star');
 //returns nodelist of all stars
 function removeStar() {
     if (moves === 1) {
-        starLine[0].add('hide');
+        starLine[0].classList.add('hide');
     }
 }
-removeStar();*/
+removeStar();
 
 //Counting Stars----------------------------TODO: If in so many moves, toggle class of star "hide".  Or, can I "pop" or "slice" from live nodelist?
-function removeStar() {
+/*function removeStar() {
     const stars = document.querySelectorAll('.stars li');
     for (star of stars) {
         if (star.style.display !== 'none') {
@@ -170,7 +173,7 @@ function removeStar() {
     }
 }
 removeStar();
-removeStar();
+removeStar();*/
 
 //Following code deals with giving the clock functionality.
 //Timer begins when user clicks a card.
