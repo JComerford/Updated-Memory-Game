@@ -219,12 +219,12 @@ toggleModal(); //Calls to open modal
 toggleModal(); //calls to hide modal
 
 //For testing Modal: Keeps modal displayed so author can mess with it rather than having to play an entire game to see modal.
-time = 121;
+/*time = 121;
 displayTime(); //2:01
 moves = 16;
 writeModalStats();
 toggleModal(); //open modal
-
+*/
 
 //This sends the statistics of the game to the modal when all matches have been made.
 function writeModalStats() {
