@@ -136,9 +136,9 @@ h1 {
     font-size: 33px;
 }
 
-/*
+/*************
  * Styles for the Score Panel
- */
+ ************/
 
 .score-panel {
     text-align: center;
@@ -166,3 +166,11 @@ h1 {
     float: inherit;
     cursor: pointer;
 }
+
+/***************
+ * Media Queries
+ **************/
+
+ @media screen and (max-width: 320px) {
+
+ }
