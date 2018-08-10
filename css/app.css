@@ -168,7 +168,9 @@ h1 {
 }
 
 /***************
- * Media Queries
+ * Media Queries 
+ * Attempted to insert queries, but kept struggling with the height of the cards.
+ * Decided to not include them as the game is still playable/fully functional without scrolling.
  **************/
 
 /*@media screen and (max-width: 320px) {
