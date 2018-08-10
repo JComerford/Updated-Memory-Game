@@ -171,6 +171,21 @@ h1 {
  * Media Queries
  **************/
 
- @media screen and (max-width: 320px) {
+@media screen and (max-width: 320px) {
 
+    h1 {
+        font-size: 100%;
+    }
+    .score-panel {
+        width: 60%;
+        overflow: auto;
+        border-radius: 8%;
+    }
+    .deck {
+        width: 90%;
+    }
+    .header, .deck .card, li .card {
+        width: 25%;
+
+    }
  }
