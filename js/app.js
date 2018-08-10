@@ -1,18 +1,22 @@
 
  /* Adapted from Mike Wales FEND webinar - https: //www.youtube.com/watch?v=_rUH-sEs68Y
  *                            &
- * Matthew Cranford 's Blog, "Journey to Greatness" - https://matthewcranford.com/memory-game-walkthrough-part-1-setup/
+ * Adapted from Matthew Cranford 's Blog, "Journey to Greatness" - https://matthewcranford.com/memory-game-walkthrough-part-1-setup/
+ *                             &
+ * Adapted from Udacity starter code.
  */
 
- /*
- * Create a list that holds all of your cards. Placed here, before we create the HTML for the cards, or later functions cannot use these variables.
- */
+//Authored by Justin Comerford.
 
 /******** 
 *
-* Global variables
+* Global Variables
 *
 ********/
+
+ /*
+  * Create a list that holds all of your cards. Placed here, before we create the HTML for the cards, or later functions cannot use these variables.
+  */
 
 let deckOfCards = ["fa fa-diamond", "fa fa-diamond",
     "fa fa-paper-plane-o", "fa fa-paper-plane-o",
@@ -40,14 +44,15 @@ let starLine = document.getElementsByClassName('fa fa-star'); //returns nodelist
 function generateCard(card) {
     return `<li class="card"><i class="fa ${card}"></i></li>`;
 }
+
 //Defines the array and repositions them within the array using the shuffle function.
 function initGame() {
     let cardHTML = shuffle(deckOfCards).map(card => { //Call shuffle function here, to shuffle cards when initGame is called.
         return generateCard(card);
     });
     deck.innerHTML = cardHTML.join('');
-    //checkScore();
-    removeStar();
+    //checkScore(); Still here from earlier version.  Left it in as a reminder it is not needed.
+    removeStar(); //Runs the function dealing with star ratings
     let cards = document.querySelectorAll('.card');
     //set up the event listener for a card. Event listener created for each card.
     cards.forEach(card => {
@@ -76,32 +81,18 @@ function shuffle(array) {
     return array;
 }
 
-/*
-Updated: This is no longer needed here as it is put with the page load/reset.
-//set up the event listener for a card. Event listener created for each card.
-    cards.forEach(card => {
-        card.addEventListener('click', (e => { //if card is clicked:
-            if (canCardBeClicked(card)) { //check conditional for click
-                addToOpenCards(card); // add card to list of open cards
-                flipCard(card); // show image on card  
-                matchMaker(card); //check cards for match. If match, stay flipped. If not, flip over.
-            }
-        }));
-    });
-*/
-
 //Set conditional for card to be clicked.
  function canCardBeClicked(card) {
      return (openCards.length < 2 && !card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match'));
  }
 
-//display the card's symbol
+//Display the card's symbol.
 function flipCard(card) {
     card.classList.add('open', 'show');
     console.log(openCards);
 }
 
-//if cards do not match, flip them back over after specified time.
+//If cards do not match, flip them back over after specified time.
 function flipBack(card) {
     setTimeout(function () {
         openCards.forEach(card => {
@@ -110,7 +101,8 @@ function flipBack(card) {
         openCards = [];
     }, 1000);
 }
-//adds to NodeList
+
+//Adds to array.
 function addToOpenCards(card) {
     openCards.push(card);
 }
@@ -125,7 +117,6 @@ function matchMaker() { //if the cards do match, lock the cards in the open posi
             openCards = [];
             matched++;
             turn();
-            //checkScore();
             removeStar();
             console.log(`Matched = ${matched}`); //for debugging
         } if (matched === allMatched) {
@@ -133,14 +124,13 @@ function matchMaker() { //if the cards do match, lock the cards in the open posi
         } else {
             flipBack(); // if the cards do not match, remove the cards from the list and hide the card's symbol
             turn();
-            //checkScore();
             removeStar();
         }
     }
 } 
 
 // increment the move counter and display it on the page
-// Move counter 
+// Move counter begins only after user clicks two cards.  One card clicked will not increment moves.
 function turn() {
     moves++;
     const movesText = document.querySelector('.moves');
@@ -148,9 +138,6 @@ function turn() {
 }
 
 //Changes score of how many stars depending on how many moves user made.
-
-
-
 //function will remove a star when the moves counter is equal to the numbers listed.
 function removeStar() {
     if (moves === 13) {
@@ -169,7 +156,7 @@ function removeStar() {
 }
 removeStar();
 
-//Function to deliver the count of stars remaining to the modal.
+//Function to deliver the count of stars remaining to the modal/console.
 function getStars() {
     stars = document.querySelectorAll('.stars li');
     starCount = 5;
@@ -192,13 +179,16 @@ function startClock() {
         }, 1000);
     }
 
-//This adds an event listener for the deck which starts the timer. This was done this way to eliminate the clock from incrementing by another second every time a card was clicked.
+/*This adds an event listener for the deck which starts the timer. 
+(For future me)This event handler was added to eliminate a recurring bug.  
+The bug made the clock increment by another second every time a card was clicked.
+At times, the clock would increment by 10 or more seconds at a time. Keep in mind.*/
 deck.addEventListener('click', (() => {
     if (clockOff) {
         startClock();
         clockOff = false;
     }
-}))
+}));
 
 //Stop clock when game ends.
 function stopClock() {
@@ -219,8 +209,8 @@ function displayTime() {
     }
 }
 
-// if all cards have matched, display a message with the final score
-//dealing with modal when user finishes game: pop-up.
+//If all cards have matched, display a message with the final score.
+//The following deals with modal when user finishes game; in form of pop-up.
 function toggleModal() {
     const modal = document.querySelector('.modal-background'); //sets variable to toggle.
     modal.classList.toggle('hide'); //toggle on/off, hide/un-hide
@@ -228,15 +218,15 @@ function toggleModal() {
 toggleModal(); //Calls to open modal
 toggleModal(); //calls to hide modal
 
-//For testing Modal: Keeps modal displayed so one can mess with asthetics.
-/*time = 121;
+//For testing Modal: Keeps modal displayed so author can mess with it rather than having to play an entire game to see modal.
+time = 121;
 displayTime(); //2:01
 moves = 16;
-checkScore(); //2 stars
 writeModalStats();
 toggleModal(); //open modal
-*/
 
+
+//This sends the statistics of the game to the modal when all matches have been made.
 function writeModalStats() {
     const timeStat = document.querySelector('.modal-time');
     const clockTime = document.querySelector('.clock').innerHTML;
@@ -244,33 +234,19 @@ function writeModalStats() {
     const starsStat = document.querySelector('.modal-stars');
     const stars = getStars();
 
-    timeStat.innerHTML = `Time = ${clockTime}`;
-    movesStat.innerHTML = `Moves = ${moves}`;
-    starsStat.innerHTML = `Stars = ${stars}`;
+    timeStat.innerHTML = `${clockTime}`; //No word, "time" here as it is already imbedded from the displayTime function above.
+    movesStat.innerHTML = `Moves ${moves}`;
+    starsStat.innerHTML = `Stars ${stars}`;
 }
-/*
-function getStars() {
-    stars = document.querySelectorAll('.stars li');
-    starCount = 0;
-    for (star of starLine) {
-        if (star.classList.contains !== 'hide') {
-            starCount++
-        }
-    }
-    console.log(`Stars = ${starCount}`); //2
-    return starCount;
-}*/
 
 //modal button functionality
 //Cancel-button:
 document.querySelector('.modal-cancel').addEventListener('click', toggleModal);
 
-
 //Replay Button:
 document.querySelector('.modal-replay').addEventListener('click', replayButton);
 
-
-//Giving reset button functionality.
+//Defines what to do to reset the stats box.
 function resetStats() {
     stopClock(); //stops clock
     clockOff = true;
@@ -279,8 +255,8 @@ function resetStats() {
     matched = 0; //sets matched pairs count back to 0 from 8.
     moves = 0; //resets moves
     document.querySelector('.moves').innerHTML = moves;
-    //stars = 0;
-    let stars = document.getElementsByClassName('fa fa-star');;
+    //stars = 0; //not needed, but kept it as a reminder to not add it later.
+    let stars = document.getElementsByClassName('fa fa-star');
     for (star of stars) {
         star.classList.remove('hide');
     }
@@ -290,26 +266,15 @@ function resetStats() {
 function gameReset() { 
     initGame();
     resetStats();   
-    openCards = [];
-    //resetCards();
-    //checkScore(); 
+    openCards = []; //Put this here in case user selects one card, then decides to remake game.  It will clear the array so we are not checking for a match on reset from the previous click.
 }
 
 function replayButton() {
-    gameReset();
-    toggleModal();
-    //resetCards();  
+    gameReset(); //Resets game, resets score panel, & shuffles deck.
+    toggleModal(); //Hides modal.
 }
-//Functionality for "Reset" Button:
+//Functionality for "Reset" Button, the rounded arrow in stats box above game.
 document.querySelector('.restart').addEventListener('click', gameReset);
-
-//reset game after win
-function resetCards() {                                    
-    const cards = document.querySelectorAll('.deck li');   
-    for (let card of cards) {
-        card.className = 'card';
-    }
-}
 
 //End of Game
 function gameOver() {
