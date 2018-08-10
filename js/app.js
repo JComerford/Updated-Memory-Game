@@ -34,6 +34,7 @@ let time = 0;
 let clockId;
 let matched = 0;
 let allMatched = 8;
+let starLine = document.getElementsByClassName('fa fa-star'); //returns nodelist of all stars
 
 //Define each card and create its HTML. This function must be placed here because of scoping.
 function generateCard(card) {
@@ -147,34 +148,40 @@ function turn() {
 }
 
 //Changes score of how many stars depending on how many moves user made.
-/*function checkScore() {
-    if (moves === 13 || moves === 16 || moves === 20) {
-        removeStar();
-    }
-}*/
 
-let starLine = document.getElementsByClassName('fa fa-star');
-//returns nodelist of all stars
+
+
+//function will remove a star when the moves counter is equal to the numbers listed.
 function removeStar() {
-    if (moves === 1) {
+    if (moves === 13) {
         starLine[0].classList.add('hide');
+        console.log(getStars());
+    } if (moves === 16) {
+        starLine[1].classList.add('hide');
+        console.log(getStars());
+    } if (moves === 20) {
+        starLine[2].classList.add('hide');
+        console.log(getStars());
+    } if (moves === 25) {
+        starLine[3].classList.add('hide');
+        console.log(getStars());
     }
 }
 removeStar();
 
-//Counting Stars----------------------------TODO: If in so many moves, toggle class of star "hide".  Or, can I "pop" or "slice" from live nodelist?
-/*function removeStar() {
-    const stars = document.querySelectorAll('.stars li');
-    for (star of stars) {
-        if (star.style.display !== 'none') {
-            star.style.display = 'none';
-            break;
+//Function to deliver the count of stars remaining to the modal.
+function getStars() {
+    stars = document.querySelectorAll('.stars li');
+    starCount = 5;
+    for (let i = 0; i < starLine.length; i++) {
+        if (starLine[i].classList.contains('hide')) {
+            starCount--;
         }
     }
+    console.log(`Stars = ${starCount}`);
+    return starCount;
 }
-removeStar();
-removeStar();*/
-
+ 
 //Following code deals with giving the clock functionality.
 //Timer begins when user clicks a card.
 function startClock() {
@@ -241,18 +248,18 @@ function writeModalStats() {
     movesStat.innerHTML = `Moves = ${moves}`;
     starsStat.innerHTML = `Stars = ${stars}`;
 }
-
+/*
 function getStars() {
     stars = document.querySelectorAll('.stars li');
     starCount = 0;
-    for (star of stars) {
-        if (star.style.display !== 'none') {
-            starCount++;
+    for (star of starLine) {
+        if (star.classList.contains !== 'hide') {
+            starCount++
         }
     }
     console.log(`Stars = ${starCount}`); //2
     return starCount;
-}
+}*/
 
 //modal button functionality
 //Cancel-button:
@@ -273,10 +280,9 @@ function resetStats() {
     moves = 0; //resets moves
     document.querySelector('.moves').innerHTML = moves;
     //stars = 0;
-
-    let stars = document.querySelectorAll('.stars li');  
+    let stars = document.getElementsByClassName('fa fa-star');;
     for (star of stars) {
-        star.style.display = 'inline';
+        star.classList.remove('hide');
     }
 }
 
@@ -284,19 +290,15 @@ function resetStats() {
 function gameReset() { 
     initGame();
     resetStats();   
-
+    openCards = [];
     //resetCards();
-    //checkScore();
-
-    
+    //checkScore(); 
 }
 
 function replayButton() {
     gameReset();
     toggleModal();
     //resetCards();  
-    //resetStats();
-
 }
 //Functionality for "Reset" Button:
 document.querySelector('.restart').addEventListener('click', gameReset);
