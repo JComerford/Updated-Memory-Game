@@ -1,20 +1,12 @@
 # Memory Game Project
 
-## Table of Contents
+This project was assigned through Udacity's Front End Web Development Program.  Udacity gave me starter code in the index.html, css, and a function to shuffle the cards which still needed to be called in some way from another function. 
 
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+Resources used for this project were:
+* The Udacity lessons leading up to this project
+* MDN & W3schools.com documentation
+* Mike Wales FEND webinar - https: //www.youtube.com/watch?v=_rUH-sEs68Y
+* Matthew Cranford 's Blog, "Journey to Greatness" - https://matthewcranford.com
+* Numerous Stackoverflow questions/answers from other users.  Although I did not pose questions myself, they helped lead me in the right direction.
 
-## Instructions
-
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
-
-To get started, open `js/app.js` and start building out the app's functionality
-
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
-
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+Although these sources were used, I then needed to adapt my project so I wrote the code.  By doing so, this project has helped me understand a lot more than I did when I started.
